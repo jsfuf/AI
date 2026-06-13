@@ -1,0 +1,6 @@
+{
+  "name": "AI Chat Assistant",
+  "description": "An AI assistant that can answer questions, powered by Google Gemini. Users can engage in a conversation with the AI, ask questions, and receive responses in a chat-like interface.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
