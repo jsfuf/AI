@@ -701,7 +701,13 @@ Incorporate these details naturally to maintain context consistency and long-ter
 
         if (!response.ok) {
           const errorText = await response.text();
-          throw new Error(`Gemini API Error: ${response.status} - ${errorText}`);
+          const parsedError = errorText.includes('{') ? JSON.parse(errorText) : null;
+          const msg = parsedError?.error || errorText;
+          if (response.status === 401 && msg.includes('configured')) {
+            throw new Error("Gemini API key is missing. If you configured MiniMax in Vercel, please switch to the MiniMax provider in the top right Select Provider menu.");
+          } else {
+            throw new Error(msg || 'Unknown Gemini API Error');
+          }
         }
         
         if (!response.body) {
