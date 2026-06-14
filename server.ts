@@ -11,7 +11,7 @@ async function startServer() {
   app.use(apiApp);
 
   // Serve app resources and handle development vs production environments
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'spa',

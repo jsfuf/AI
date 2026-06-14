@@ -21,7 +21,7 @@ const assistantStreamHandler = async (req: express.Request, res: express.Respons
     } = req.body;
 
     // Ensure we use the correct requested NVIDIA API Key, prefer env var
-    let nvidiaApiKey = process.env.NVIDIA_API_KEY;
+    let nvidiaApiKey = process.env.NVIDIA_API_KEY || process.env.MINIMAX_API_KEY || process.env.OPENCODE_API_KEY;
     if (!nvidiaApiKey && process.env.API_KEY && !process.env.API_KEY.startsWith('AIza')) {
       nvidiaApiKey = process.env.API_KEY; // The user might have just named the Vercel variable API_KEY
     }
